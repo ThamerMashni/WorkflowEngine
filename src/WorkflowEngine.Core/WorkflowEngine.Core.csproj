@@ -1,0 +1,32 @@
+﻿
+<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFramework>net8.0</TargetFramework>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<Nullable>enable</Nullable>
+
+		<!-- NuGet Package Info -->
+		<PackageId>WorkflowEngine.Core</PackageId>
+		<Version>0.9.0</Version>
+		<Authors>Thamer Mashni</Authors>
+		<Description>A flexible, role-based workflow management system for .NET applications</Description>
+		<PackageProjectUrl>https://github.com/thamermashni/WorkflowEngine</PackageProjectUrl>
+		<RepositoryUrl>https://github.com/thamermashni/WorkflowEngine</RepositoryUrl>
+		<RepositoryType>git</RepositoryType>
+		<PackageTags>workflow;workflow-engine;approval-process;state-machine;bpm</PackageTags>
+		<PackageLicenseExpression>MIT</PackageLicenseExpression>
+		<PackageReadmeFile>README.md</PackageReadmeFile>
+		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+		<PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="8.0.0" />
+	</ItemGroup>
+
+	<ItemGroup>
+    		<None Include="..\README.md" Pack="true" PackagePath="\" />
+	</ItemGroup>
+
+</Project>

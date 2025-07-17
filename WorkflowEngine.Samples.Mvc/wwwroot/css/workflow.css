@@ -1,0 +1,93 @@
+﻿/* wwwroot/css/workflow.css */
+
+/* Timeline Styles */
+.timeline {
+    position: relative;
+    padding-left: 30px;
+}
+
+.timeline-item {
+    position: relative;
+    padding-bottom: 20px;
+}
+
+    .timeline-item:before {
+        content: '';
+        position: absolute;
+        left: -21px;
+        top: 20px;
+        height: 100%;
+        width: 2px;
+        background: #dee2e6;
+    }
+
+    .timeline-item:last-child:before {
+        display: none;
+    }
+
+.timeline-marker {
+    position: absolute;
+    left: -27px;
+    top: 5px;
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background: #007bff;
+    border: 2px solid #fff;
+    box-shadow: 0 0 0 2px #dee2e6;
+}
+
+.timeline-content h6 {
+    margin-bottom: 5px;
+    color: #495057;
+}
+
+/* Workflow Visualization */
+.workflow-viz {
+    padding: 20px;
+    background: #f8f9fa;
+    border-radius: 8px;
+}
+
+.stage-box {
+    position: relative;
+    padding: 10px 15px;
+    margin: 10px 0;
+    background: #e9ecef;
+    border-radius: 5px;
+    border: 2px solid #dee2e6;
+    font-size: 14px;
+    transition: all 0.3s ease;
+}
+
+    .stage-box.current {
+        background: #007bff;
+        color: white;
+        border-color: #0056b3;
+        font-weight: bold;
+        box-shadow: 0 2px 5px rgba(0,123,255,0.3);
+    }
+
+    .stage-box .badge {
+        position: absolute;
+        right: 10px;
+        top: 50%;
+        transform: translateY(-50%);
+    }
+
+/* Role Switch Cards */
+.card {
+    transition: transform 0.2s;
+}
+
+    .card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    }
+
+/* Status Badges */
+.badge {
+    padding: 5px 10px;
+    font-size: 12px;
+    font-weight: 500;
+}

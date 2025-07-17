@@ -1,0 +1,66 @@
+﻿<!-- Views/Home/Index.cshtml -->
+@{
+    ViewData["Title"] = "Workflow Engine Demo";
+}
+
+<div class="jumbotron">
+    <h1 class="display-4">Workflow Engine Demo</h1>
+    <p class="lead">A demonstration of the WorkflowEngine library for document approval workflows.</p>
+    <hr class="my-4">
+    <p>This demo shows how documents flow through different stages with role-based actions.</p>
+    
+    <div class="row mt-4">
+        <div class="col-md-3">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">📝 Author</h5>
+                    <p class="card-text">Create and edit documents</p>
+                    <form asp-action="SwitchRole" method="post">
+                        <input type="hidden" name="role" value="Author" />
+                        <button type="submit" class="btn btn-primary">Switch to Author</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">👀 Reviewer</h5>
+                    <p class="card-text">Review and request changes</p>
+                    <form asp-action="SwitchRole" method="post">
+                        <input type="hidden" name="role" value="Reviewer" />
+                        <button type="submit" class="btn btn-info">Switch to Reviewer</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">👔 Manager</h5>
+                    <p class="card-text">Approve or deny documents</p>
+                    <form asp-action="SwitchRole" method="post">
+                        <input type="hidden" name="role" value="Manager" />
+                        <button type="submit" class="btn btn-success">Switch to Manager</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">📰 Publisher</h5>
+                    <p class="card-text">Publish approved documents</p>
+                    <form asp-action="SwitchRole" method="post">
+                        <input type="hidden" name="role" value="Publisher" />
+                        <button type="submit" class="btn btn-warning">Switch to Publisher</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="mt-4">
+        <a class="btn btn-primary btn-lg" asp-controller="Documents" asp-action="Index" role="button">View Documents</a>
+    </div>
+</div>

@@ -1,0 +1,42 @@
+﻿<!-- Views/Documents/Index.cshtml -->
+@model DocumentListViewModel
+@{
+    ViewData["Title"] = "Documents";
+}
+
+<h2>Documents</h2>
+<p>Current Role: <span class="badge bg-info">@Model.CurrentUserRole</span></p>
+
+<p>
+    <a asp-action="Create" class="btn btn-success">Create New Document</a>
+</p>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Title</th>
+            <th>Type</th>
+            <th>Author</th>
+            <th>Status</th>
+            <th>Current Stage</th>
+            <th>Created</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Documents)
+        {
+            <tr>
+                <td>@item.Title</td>
+                <td>@item.DocumentType</td>
+                <td>@item.Author</td>
+                <td><span class="@item.GetStatusBadgeClass()">@item.FlowManager?.Status</span></td>
+                <td>@item.GetCurrentStageDisplay()</td>
+                <td>@item.CreatedDate.ToString("yyyy-MM-dd")</td>
+                <td>
+                    <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-sm btn-primary">View</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

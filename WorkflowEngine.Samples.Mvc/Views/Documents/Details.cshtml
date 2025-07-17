@@ -1,0 +1,134 @@
+﻿@model DocumentDetailsViewModel
+@{
+    ViewData["Title"] = "Document Details";
+}
+
+<h2>@Model.Document.Title</h2>
+
+<div class="row">
+    <div class="col-md-8">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Document Information</h5>
+                <dl class="row">
+                    <dt class="col-sm-3">Type</dt>
+                    <dd class="col-sm-9">@Model.Document.DocumentType</dd>
+
+                    <dt class="col-sm-3">Author</dt>
+                    <dd class="col-sm-9">@Model.Document.Author</dd>
+
+                    <dt class="col-sm-3">Created</dt>
+                    <dd class="col-sm-9">@Model.Document.CreatedDate.ToString("yyyy-MM-dd HH:mm")</dd>
+
+                    <dt class="col-sm-3">Status</dt>
+                    <dd class="col-sm-9">
+                        <span class="@Model.Document.GetStatusBadgeClass()">
+                            @Model.Document.FlowManager?.Status
+                        </span>
+                    </dd>
+
+                    <dt class="col-sm-3">Current Stage</dt>
+                    <dd class="col-sm-9">@Model.Document.GetCurrentStageDisplay()</dd>
+                </dl>
+
+                <h5 class="card-title mt-4">Content</h5>
+                <p class="card-text">@Model.Document.Content</p>
+            </div>
+        </div>
+
+        <div class="card mt-3">
+            <div class="card-body">
+                <h5 class="card-title">Workflow History</h5>
+                @if (Model.ActionHistory.Any())
+                {
+                    <div class="timeline">
+                        @foreach (var action in Model.ActionHistory)
+                        {
+                            <div class="timeline-item">
+                                <div class="timeline-marker"></div>
+                                <div class="timeline-content">
+                                    <h6>@action.Action at @action.Stage stage</h6>
+                                    <p class="text-muted">
+                                        by @action.PerformedBy on @action.PerformedAt.ToString("yyyy-MM-dd HH:mm")
+                                    </p>
+                                    @if (!string.IsNullOrEmpty(action.Note))
+                                    {
+                                        <p>Note: @action.Note</p>
+                                    }
+                                </div>
+                            </div>
+                        }
+                    </div>
+                }
+                else
+                {
+                    <p>No actions performed yet.</p>
+                }
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-4">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Available Actions</h5>
+                <p>Current Role: <span class="badge bg-info">@Model.CurrentUserRole</span></p>
+
+                @if (Model.CanPerformActions)
+                {
+                    <form asp-action="PerformAction" method="post">
+                        <input type="hidden" name="DocumentId" value="@Model.Document.Id" />
+
+                        <div class="mb-3">
+                            <label class="form-label">Action</label>
+                            <select name="Action" class="form-select" required>
+                                <option value="">Select an action...</option>
+                                @foreach (var action in Model.AvailableActions)
+                                {
+                                    <option value="@((int)action)">@action</option>
+                                }
+                            </select>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label">Note</label>
+                            <textarea name="Note" class="form-control" rows="3" required></textarea>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary">Perform Action</button>
+                    </form>
+                }
+                else
+                {
+                    <p class="text-muted">No actions available for your current role.</p>
+                }
+            </div>
+        </div>
+
+        <div class="card mt-3">
+            <div class="card-body">
+                <h5 class="card-title">Workflow Visualization</h5>
+                <div class="workflow-viz">
+                    @foreach (var route in Model.Document.FlowManager.Routes.Where(r => r.IsActive))
+                    {
+                        <h6>@((DocumentRoutes)route.Tag)</h6>
+                        @foreach (var stage in route.Stages.Where(s => s.IsActive))
+                        {
+                            <div class="stage-box @(stage.IsCurrent ? "current" : "")">
+                                @((DocumentStages)stage.Tag)
+                                @if (stage.Actions.Any())
+                                {
+                                    <span class="badge bg-success">✓</span>
+                                }
+                            </div>
+                        }
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index" class="btn btn-secondary">Back to List</a>
+</div>
