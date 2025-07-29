@@ -4,12 +4,12 @@ A flexible, role-based workflow management system for .NET 8+ applications.
 
 ## Features
 
-- 🔄 **Multi-Route Workflows** - Define multiple paths through your workflow
-- 📊 **Stage-Based Progression** - Clear stages with defined actions
-- 🔐 **Role-Based Authorization** - Control who can perform actions at each stage
-- 📝 **Action History** - Complete audit trail of all actions
-- 🎯 **Template System** - Define reusable workflow templates
-- 🏷️ **Tag System** - Map stages and routes to your domain enums
+- **Multi-Route Workflows** - Define multiple paths through your workflow
+- **Stage-Based Progression** - Clear stages with defined actions
+- **Role-Based Authorization** - Control who can perform actions at each stage
+- **Action History** - Complete audit trail of all actions
+- **Template System** - Define reusable workflow templates
+- **Tag System** - Map stages and routes to your domain enums
 
 ## Installation
 
@@ -124,10 +124,3 @@ workflow.SwitchToRoute((int)InvoiceRoutes.FastTrackApproval);
 - `GetAvailableActions(...)` - Get allowed actions for user
 - `CanUserPerformAction(...)` - Check user permissions
 
-## License
-
-MIT
-
-## Contributing
-
-Contributions are welcome! Please feel free to submit a Pull Request.
