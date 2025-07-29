@@ -45,7 +45,7 @@ public class Document : WorkflowEnabledEntity
 
 ## Documentation
 
-See the [full documentation](src/WorkflowEngine.Core/README.md) for detailed usage and examples.
+See the [full documentation](src/README.md) for detailed usage and examples.
 
 ## Sample Application
 
