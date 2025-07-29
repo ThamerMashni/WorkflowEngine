@@ -50,6 +50,17 @@ See the [full documentation](src/README.md) for detailed usage and examples.
 ## Sample Application
 
 Check out the [MVC Sample](WorkflowEngine.Samples.Mvc/) to see the workflow engine in action.
+### Screenshots
+#### Workflow in Action
+
+| Author Creating Document | Author Submitted Action |
+|:------------------------:|:-----------------------:|
+| ![Author Actions](img/Author-actions.png) | ![Author Actions 2](img/author-no-actions.png) |
+
+| Domain Entity List | Workflow Complete |
+|:----------------:|:-----------------:|
+| ![Author Actions 3](img/user-list.png) | ![Author Actions 4](img/Finished.png) |
+
 
 ## Contributing
 
